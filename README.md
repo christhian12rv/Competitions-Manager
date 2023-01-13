@@ -1,86 +1,147 @@
-Olá Dev! Tudo bem?
+<h1 align="center">Gerenciador de Competições</h1>
 
-Estamos sempre em busca de profissionais capacitados e interessados, com boa capacidade de aprendizado, adaptação e principalmente bom senso.
+<!-- Índice -->
+<details>
+  <summary>Índice</summary>
+  <ol>
+        <li><a href="#feito-com">Feito com</a></li>
+    </li>
+    <li>
+      <a href="#começando">Começando</a>
+      <ul>
+        <li><a href="#pré-requisitos">Pré requisitos</a></li>
+        <li><a href="#instalação">Instalação</a></li>
+        <li><a href="#rodando-o-projeto">Rodando o projeto</a></li>
+      </ul>
+    </li>
+    <li><a href="#explicação-do-projeto">Explicação do projeto</a></li>
+  </ol>
+</details>
 
-Este teste tem como objetivo avaliar e desafiar você. Queremos apenas reconhecer seu esforço e potencial para aprender se adaptar e tomar decisões.
+ <!-- ABOUT THE PROJECT -->
+ ## Sobre o projeto
+ Esse projeto é um gerenciador de competições, onde é possível adicionar atletas a certas competições e computar o rank de cada competição. O projeto foi criado com **Nodejs**, **Express** e **SQLite** (utilizando **Sequelize**). A arquitetrua usada foi a arquitetura **MVCS (Models Views Controllers Services)**
 
-Vamos ao teste!
+### Feito com
 
-## Controlando competições.
+-   [NodeJS](https://nodejs.org/en/)
+-   [Express](https://expressjs.com/)
+-   [SQLite](https://www.sqlite.org/index.html)
+-   [Sequelize](https://sequelize.org)
 
-Nessa parte do teste você deve construir um backend com uma intereface REST, que será responsável por controlar várias competições.
+<!-- Começando -->
 
-Existem 3 tipos de competição:
+## Começando
 
-* Martelo de Thor:
-  - Maior tempo segurando o martelo ganha.
-  - Medida: Tempo (minutos, segundos)
+### Pré requisitos
 
-* Lançamento de dardos:
-  - Maior distância vence.
-  - Cada atleta tem três chances.
-  - Medida: Distancia (centímetro, metros)
+#### Node
 
-* Beber Água:
-  - Maior quantidade ganha.
-  - Medida: Volume (millilitro, litros)
+-   #### Instalação do Node no Windows
 
-## API
+    Basta acessar o [site oficial do Node.js](https://nodejs.org/) e baixar o instalador.
+    Além disso, certifique-se de ter o `git` disponível em seu PATH, `npm` pode precisar dele (você pode encontrar o git [aqui](https://git-scm.com/)).
 
-A API deve fornecer opções para:
+-   ##### Instalação do Node no Ubuntu
 
-1. Criar uma competição.
-2. Finalizar uma competição.
-3. Listar todas as competições.
-4. Listar todas as competições ativas.
-5. Listar uma competição por id.
-6. Adicionar atletas a competição.
-7. Lista todos os atletas de uma competição
-8. Computar o rank final e parcial com a posição de cada participante.
+    Você pode instalar o nodejs e o npm facilmente com o apt install, basta executar os seguintes comandos.
 
-**Detalhes:**
+        $ sudo apt install nodejs
+        $ sudo apt install npm
 
-* A API deve validar os dados de input.
-* A API não deve aceitar novos cadastros caso a competição já tenha sido finalizada.
-* O design da api e modelagem do banco fica ao seu critério, inclusive será usado para avaliação.
-  - Dica: Tente modelar a estrutura de forma genérica, de uma maneira que novas formas de competições possam ser adicionadas facilmente.
-* Para integrar mais facilmente com o front, você pode fazer um rota `get` `/contest/all`, não se preocupe com paginação.
-* Crie um README.md explicando como rodar sua API e forneça exemplos e descrição das rotas.
-  - Uma collection do postman ajuda muito.
-* Atente-se para as unidades de medidas pois o rank deve considera-las.
-* Utilize sqlite pra o banco, com **sequelize**.
-* Use o nome do atleta como chave única para sua entrada em uma competição, ou seja, se um atleta de mesmo nome for inserido os dados são sobreescrevidos.
-* Use esse repósitorio pra subir o projeto, renomeie esse arquivo pra `enunciado.md` e crie o seu próprio `README.md`.
+-   ##### Outros sistemas operacionais
+    Você pode encontrar mais informações sobre a instalação no [site oficial do Node.js](https://nodejs.org/) e no [site oficial do NPM](https://npmjs.org/).
 
-### Exemplos
-Exemplos são meramente ilustrativos a entrada pode ser da maneira mostrada abaixo, mas na reposta talvez você queira incluir dados da competição também.
+    Se a instalação foi bem-sucedida, você poderá executar o seguinte comando.
 
-1. Adicionar atleta
-```json
-{
-  "athlete": "Jane Doe",
-  "value": 10,
-  "unit": "min"
-}
+        $ node --version
+        v16.3.0
+    
+        $ npm --version
+        7.24.0
+
+    Se você precisar atualizar o `npm`, você pode fazê-lo usando o `npm`! Legal, certo? Após executar o seguinte comando,    basta abrir novamente a linha de comando e ser feliz.
+    
+        $ npm install npm -g
+
+
+
+### Instalação
+
+1. Clone o repositório
+    ```sh
+    git clone https://github.com/hub4future/teste_2_christhian12rv
+    ```
+2. Instale os pacotes npm
+    ```sh
+    npm install
+    ```
+
+### Rodando o projeto
+
+Primeiro, crie um arquivo .env na raiz do projeto. Em seguida, altere o arquivo .env
+
+```sh
+PORT=porta_do_seu_servidor
 ```
-```json
-{
-  "athlete": "John Doe",
-  "value": 750,
-  "unit": "sec"
-}
-```
 
-2. Resultado
-```json
-[
-  {
-    "athlete": "John Doe",
-    "total": 750
-  },
-  {
-    "athlete": "Jane Doe",
-    "total": 600
-  }
-] 
-```
+Para executar o projeto, execute
+
+    $ npm start
+
+Para executar o projeto em modo de desenvolvimento execute
+
+    $ npm run dev
+
+Para verificar erros de padrão de código (eslint), execute
+
+    $ npm run lint
+    
+Para verificar e corrigir erros de padrão de código (eslint), execute
+
+    $ npm run lint:fix
+
+## Explicação do projeto
+O projeto tem 8 rotas, sendo 3 rotas POST e 5 rotas GET.
+
+Rotas
+
+**POST /competition** -> Cria uma competição. Deve se passar os dados:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/createCompetitionData.png" alt="Dados da criação de uma competição">
+
+Retorno:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/createCompetitionReturn.png" alt="Retorno da criação de uma competição">
+
+**POST /athlete** -> Cria um atleta. Deve se passar os dados:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/createAthleteData.png" alt="Dados da criação de um atleta">
+
+Retorno:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/createAthleteReturn.png" alt="Retorno da criação de um atleta">
+
+**POST /competition/finish/:id** -> Finaliza uma competição. Deve-se passar o id da competição como parâmetro:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/finishCompetitionReturn.png" alt="Retorno da finalização de uma competição">
+
+**GET /competition** -> Retorna todas as competições:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/competitionsReturn.png" alt="Retorno de todas as competições">
+
+**GET /competition/rank/:id** -> Computa e retorna o rank de todos os atletas de uma competição. Deve-se passar o id da competição como parâmetro:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/rankReturn.png" alt="Retorno do rank de atletas de uma competição">
+
+**GET /athlete/:id** -> Retorna todos os atletas de uma competição:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/athletesReturn.png" alt="Retorno de todos os atletas de uma competição">
+
+**GET /competition/active** -> Retorna todas as competições ativas (não finalizadas):
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/finishedCompetitionReturn.png" alt="Retorno de competições finalizadas">
+
+**GET /competition/:id** -> Retorna uma competição. Deve-se passar o id da competição como parâmetro:
+
+<img width="100%" src="https://github.com/hub4future/teste_2_christhian12rv/blob/master/img/competitionReturn.png" alt="Retorno de uma competição">

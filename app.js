@@ -1,48 +1,35 @@
-import express from "express";
-import createError from "http-errors"
-import database from "./db/database.js";
-import contest_router from "./routes/contest.router.js";
+import express from 'express';
+import database from './db/database.js';
+import config from './config/config.js';
+import logger from './config/logger.js';
+import CompetitionRouter from './routes/competition.router.js';
+import AthleteRouter from './routes/athlete.router.js';
 
-const host = '0.0.0.0';
-const port = 3000;
-
-// Create databases...
-database.sync({logging: false, force: false}).then(result => {
-    console.log(" * DB Synced!");
+// Create database...
+database.sync({ force: false, }).then(() => {
+	logger.info('Database Synced!');
 }).catch(reason => {
-    console.log(reason);
+	logger.error(reason);
 });
 
-
-
-
-// Start express
+// Start express server
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false, }));
 
-
-app.get('/ping', function (req, res, next) {
-    res.send({'detail': "Ping GET!"});
-})
-
-app.use('/contest', contest_router);
-
-
-
-app.use(function (req, res, next) {
-    next(createError(404));
-});
+// Routes
+app.use('/competition', CompetitionRouter);
+app.use('/athlete', AthleteRouter);
 
 // Error handler
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.send({
-        'error': true,
-        'msg': err.message
-    });
+app.get('/*', function (req, res) {
+	res.status(500);
+	res.send({
+		'error': true,
+		'msg': 'a',
+	});
 });
 
-app.listen(port, host, () => {
-    console.log(`Express is running at http://${host}:${port}`)
+app.listen(config.port, () => {
+	logger.info(`Server is running at http://localhost:${config.port}`);
 });

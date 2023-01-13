@@ -5,17 +5,22 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "eslint . --ext .js && nodemon app.js",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
   },
   "dependencies": {
     "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
     "express": "~4.16.1",
+    "express-validator": "^6.14.2",
     "http-errors": "~1.6.3",
+    "log4js": "^6.7.1",
     "moment": "^2.29.1",
     "sequelize": "^6.6.5",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "eslint": "^8.31.0"
   }
 }
